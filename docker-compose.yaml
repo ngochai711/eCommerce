@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  mongodb:
+    image: mongodb/mongodb-community-server:6.0.6-ubi8
+    platform: linux/arm64
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGODB_ROOT_USER=root
+      - MONGODB_ROOT_PASSWORD=root
+      - MONGODB_USERNAME=hint
+      - MONGODB_PASSWORD=hint
+      - MONGODB_DATABASE=shopDEV
+    networks:
+      - local-net
+
+networks:
+  local-net:
+    driver: bridge

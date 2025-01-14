@@ -12,7 +12,8 @@
   "description": "",
   "dependencies": {
     "compression": "^1.7.5",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5"
   },
   "devDependencies": {
     "helmet": "^8.0.0",
