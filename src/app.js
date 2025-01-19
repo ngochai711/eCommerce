@@ -17,6 +17,7 @@ app.use(express.urlencoded({
 // init db
 require('./dbs/init.mongodb')
 
+// init routes
 app.use('/', require('./routes'))
 // handling error
 
