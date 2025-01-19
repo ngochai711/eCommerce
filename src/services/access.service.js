@@ -6,6 +6,7 @@ const crypto = require('crypto')
 const KeyTokenService = require("./keyToken.service")
 const { createTokenPair } = require("../auth/authUtils")
 const { getInfoData } = require('../utils/index')
+const { BadRequestError, ConflictRequestError } = require("../core/error.response")
 
 const RoleShop = {
     SHOP: 'SHOP',
@@ -21,10 +22,7 @@ class AccessService {
             // 1. check email exists?
             const holderShop = await shopModel.findOne({email}).lean() // lean giảm tải sign context
             if(holderShop){
-                return {
-                    code: 'xxxx',
-                    message: 'Shop already registered!'
-                }
+                throw new BadRequestError('Error: Shop already registered!')
             }
 
 
