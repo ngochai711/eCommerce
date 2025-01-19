@@ -21,16 +21,17 @@ class AccessService {
         try {
             // 1. check email exists?
             const holderShop = await shopModel.findOne({email}).lean() // lean giảm tải sign context
+            
+
             if(holderShop){
                 throw new BadRequestError('Error: Shop already registered!')
+                
             }
-
-
+            
             const passswordHash = await bcrypt.hash(password, 10)
             const newShop = await shopModel.create({
                 name, email, password: passswordHash, roles: [RoleShop.SHOP]
             })
-
             if(newShop){
                 // create privateKey, publicKey
                 // const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa',{
@@ -63,7 +64,6 @@ class AccessService {
 
                 // create token pair
                 const tokens = await createTokenPair({userId: newShop._id, email}, publicKey, privateKey)
-
                 return {
                     code: 201,
                     metadata:{

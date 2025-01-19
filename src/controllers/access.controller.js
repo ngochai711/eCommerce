@@ -1,14 +1,23 @@
-'use strict'
+    'use strict'
 
-const AccessService = require("../services/access.service")
+    const { OK, CREATED } = require("../core/success.response")
+    const AccessService = require("../services/access.service")
 
-class AccessController {
+    class AccessController {
 
-    signUp = async ( req, res, next) => {
-        
-        return res.status(201).json(await AccessService.signUp(req.body))
+        signUp = async ( req, res, next) => {
+            
+            new CREATED ({
+                message: 'Registered OK!',
+                metadata: await AccessService.signUp(req.body),
+                options: {
+                    limit:10
+                }
+            }).send(res)
 
+            // return res.status(201).json(await AccessService.signUp(req.body))
+
+        }
     }
-}
 
-module.exports = new AccessController()
+    module.exports = new AccessController()

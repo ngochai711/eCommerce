@@ -2,18 +2,12 @@
 
 const StatusCode = {
     FORBIDDEN: 403,
-    CONFLICT: 409,
-    NOT_FOUND: 404,
-    INTERNAL_SERVER_ERROR: 500,
-    BAD_REQUEST: 400
+    CONFLICT: 409
 }
 
 const ReasonStatusCode = {
     FORBIDDEN: 'Bad request error',
-    CONFLICT: 'Conflict error',
-    NOT_FOUND: 'Resource not found',
-    INTERNAL_SERVER_ERROR: 'Internal server error',
-    BAD_REQUEST: 'Bad request error'
+    CONFLICT: 'Conflict error'
 }
 
 class ErrorResponse extends Error {
@@ -27,14 +21,14 @@ class ErrorResponse extends Error {
 
 class ConflictRequestError extends ErrorResponse {
 
-    constructor(message = ReasonStatusCode.CONFLICT, statusCode = StatusCode.FORBIDDEN){
+    constructor(message = ReasonStatusCode.CONFLICT, statusCode = StatusCode.CONFLICT){
         super(message, statusCode)
     }
 }
 
 class BadRequestError extends ErrorResponse {
 
-    constructor(message = ReasonStatusCode.CONFLICT, statusCode = StatusCode.FORBIDDEN){
+    constructor(message = ReasonStatusCode.FORBIDDEN, statusCode = StatusCode.FORBIDDEN){
         super(message, statusCode)
     }
 }
